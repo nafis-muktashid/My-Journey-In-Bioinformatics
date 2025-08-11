@@ -187,6 +187,54 @@ ggplot(mpg, aes(x=hwy, y=displ, linewidth = year)) + geom_point()  #Nothing happ
 ##Ques - 4
 ggplot(mpg, aes(x=hwy, y=hwy))  #Plots nothing. Since no relation between the same variables 
 ##Ques - 5
+###Plot_1
+ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, colour = species)) + geom_point()
+###Plot_2
+ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, 
+                     colour = species)) + geom_point() + facet_wrap(~species)  #This allows us to detect a fairly strong positive correlation, which was not apparent in the simple scatter plot
+##Ques - 6
+###Plot_1
+ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm,
+                     colour = species, shape = species)) + geom_point() + labs(color = "Species")  #Two legends because of the "labs" using a different spelling for species
+###Plot_2
+ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm,
+                     colour = species, shape = species)) + geom_point()  #Removing "labs" will have one legend for all
+##Ques - 7
+###Plot_1
+ggplot(penguins, aes(x=island, fill = species)) + geom_bar(position = "fill")  #What species do an island have?
+###Plot_2
+ggplot(penguins, aes(x=species, fill = island)) + geom_bar(position = "fill")  #Which island do this species found at?
+
+
+
+#Saving the Plot Image
+##Part_1
+ggplot(penguins, aes(x=species, fill = island
+                     )) + geom_bar(position = "fill") + ggsave(filename = "test_plot_save_1.png")  #This will directly save the plot in the working directory.
+##Part_2
+ggsave(filename = "test_plot_save_3.png")  #This will save the last plotted chart. Both of these commands will only save the plot and won't show in RStudio. 
+
+
+
+#Exercise --- P=30
+##Ques - 1
+###Plot_1
+ggplot(mpg, aes(x=class)) + geom_bar()
+###Plot_2
+ggplot(mpg, aes(x=cty, y=hwy)) + geom_point()
+###Save Command
+ggsave("mpg-plot.png")  #This will save the Plot_2 as "ggsave" saves most recent plot only.
+##Ques - 2
+ggsave("mpg-plot-Ques_2.pdf")  #Change the file format, and it will save as a PDF
+
+
+
+#Help
+?mpg
+
+
+
+
 
 
 
